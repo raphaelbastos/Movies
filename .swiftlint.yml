@@ -1,0 +1,15 @@
+excluded:
+  - Pods
+  - Unnon/Classes/Vendor
+  - Carthage
+opt_in_rules:
+    - force_unwrapping
+empty_count:
+  severity: warning
+force_try:
+  severity: warning
+force_unwrapping:
+  severity: error
+variable_name:
+  min_length:
+    warning: 2

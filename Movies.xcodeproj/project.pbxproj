@@ -94,6 +94,7 @@
 				A33E3BC620F2B1EC004C2C46 /* Frameworks */,
 				A33E3BC720F2B1EC004C2C46 /* Resources */,
 				8C556EA65551983AACE945A7 /* [CP] Embed Pods Frameworks */,
+				A33E3BDE20F2B3A4004C2C46 /* Swift Lint */,
 			);
 			buildRules = (
 			);
@@ -193,6 +194,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Movies/Pods-Movies-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		A33E3BDE20F2B3A4004C2C46 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
