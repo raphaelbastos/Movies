@@ -35,6 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Util
 
     private func loadRootScreen() -> UIViewController {
-        return UIViewController()
+        let moviesListViewController = MoviesListViewController()
+        let navigationController = UINavigationController(rootViewController: moviesListViewController)
+        
+        return navigationController
     }
 }

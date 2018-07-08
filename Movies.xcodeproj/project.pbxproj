@@ -11,6 +11,8 @@
 		A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BCC20F2B1EC004C2C46 /* AppDelegate.swift */; };
 		A33E3BD420F2B1ED004C2C46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A33E3BD320F2B1ED004C2C46 /* Assets.xcassets */; };
 		A33E3BD720F2B1ED004C2C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33E3BD520F2B1ED004C2C46 /* LaunchScreen.storyboard */; };
+		A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */; };
+		A33E3BE620F2B52B004C2C46 /* MoviesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A33E3BD320F2B1ED004C2C46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A33E3BD620F2B1ED004C2C46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A33E3BD820F2B1ED004C2C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
+		A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,8 +73,50 @@
 				A33E3BD320F2B1ED004C2C46 /* Assets.xcassets */,
 				A33E3BD520F2B1ED004C2C46 /* LaunchScreen.storyboard */,
 				A33E3BD820F2B1ED004C2C46 /* Info.plist */,
+				A33E3BE020F2B4EC004C2C46 /* Features */,
+				A33E3BE720F2B689004C2C46 /* Helpers */,
+				A33E3BE220F2B515004C2C46 /* Models */,
 			);
 			path = Movies;
+			sourceTree = "<group>";
+		};
+		A33E3BE020F2B4EC004C2C46 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				A33E3BE120F2B4EC004C2C46 /* Movies List */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		A33E3BE120F2B4EC004C2C46 /* Movies List */ = {
+			isa = PBXGroup;
+			children = (
+				A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */,
+				A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */,
+			);
+			path = "Movies List";
+			sourceTree = "<group>";
+		};
+		A33E3BE220F2B515004C2C46 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A33E3BE720F2B689004C2C46 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A33E3BE820F2B696004C2C46 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A33E3BE820F2B696004C2C46 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		F4C7E749F90E19961A57B7E6 /* Pods */ = {
@@ -145,6 +191,7 @@
 			files = (
 				A33E3BD720F2B1ED004C2C46 /* LaunchScreen.storyboard in Resources */,
 				A33E3BD420F2B1ED004C2C46 /* Assets.xcassets in Resources */,
+				A33E3BE620F2B52B004C2C46 /* MoviesListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
+				A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
