@@ -47,12 +47,14 @@ class MoviesListViewController: UIViewController {
     }
 
     private func setupCollectionView() {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self,
+                                 action: #selector(didPullToRefresh),
+                                 for: .valueChanged)
+        collectionView.refreshControl = refreshControl
         collectionView.dataSource = self
         collectionView.delegate = self
-
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
-        collectionView.refreshControl = refreshControl
+        collectionView.register(cellType: MovieCollectionViewCell.self)
     }
 
     // MARK: - Actions
