@@ -19,9 +19,18 @@ class MoviesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
-        setupSearch()
         setupCollectionView()
         setupPresenter()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationItem.hidesSearchBarWhenScrolling = true
     }
     
     private func setupPresenter() {
@@ -33,9 +42,6 @@ class MoviesListViewController: UIViewController {
         title = "Movies"
 //        navigationController?.navigationBar.prefersLargeTitles = true
         self.extendedLayoutIncludesOpaqueBars = true
-    }
-
-    private func setupSearch() {
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
     }
