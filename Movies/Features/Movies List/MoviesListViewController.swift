@@ -12,7 +12,9 @@ class MoviesListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     private let searchController = UISearchController(searchResultsController: nil)
+    
     private var presenter: MoviesListPresenter!
+    private var movies = [Movie]()
     
     // MARK: Lyfecicle
     
@@ -81,10 +83,11 @@ extension MoviesListViewController: UISearchResultsUpdating {
 
 extension MoviesListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0 // TODO: provisory
+        return movies.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell() // TODO: provisory
+        let cell: MovieCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        return cell
     }
 }

@@ -6,8 +6,8 @@
 //  Copyright © 2018 Yves Bastos. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 protocol MoviesListDataSource {
-    
+    func getMovies(title: String) -> Single<[Movie]>
 }

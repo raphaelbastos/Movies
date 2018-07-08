@@ -6,8 +6,11 @@
 //  Copyright © 2018 Yves Bastos. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 class MoviesListRepository: MoviesListDataSource {
-    
+    func getMovies(title: String) -> Single<[Movie]> {
+        // TODO:
+        return Single.just([])
+    }
 }
