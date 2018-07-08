@@ -4,6 +4,9 @@ excluded:
   - Carthage
 opt_in_rules:
     - force_unwrapping
+disabled_rules: 
+    - trailing_whitespace
+line_length: 130
 empty_count:
   severity: warning
 force_try:

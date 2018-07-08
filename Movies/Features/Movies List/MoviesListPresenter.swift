@@ -9,7 +9,16 @@
 import Foundation
 
 class MoviesListPresenter {
+    private var view: MoviesListViewContract?
+    private var dataSource: MoviesListDataSource?
     
-    
-    
+    init(view: MoviesListViewContract, dataSource: MoviesListDataSource) {
+        self.view = view
+        self.dataSource = dataSource
+    }
+ 
+    // MARK: - Class Methods
+    func onViewDidLoad() {
+        view?.setLoadingAppearance(to: true)
+    }
 }

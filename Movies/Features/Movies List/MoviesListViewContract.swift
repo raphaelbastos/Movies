@@ -9,5 +9,5 @@
 import Foundation
 
 protocol MoviesListViewContract {
-    
+    func setLoadingAppearance(to loading: Bool)
 }

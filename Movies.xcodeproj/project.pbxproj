@@ -17,6 +17,7 @@
 		A33E3BEC20F2BA48004C2C46 /* MoviesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */; };
 		A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */; };
 		A33E3BF020F2BA61004C2C46 /* MoviesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */; };
+		A340DE7520F2BFF800039814 /* UICollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7420F2BFF800039814 /* UICollectionViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListDataSource.swift; sourceTree = "<group>"; };
 		A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRepository.swift; sourceTree = "<group>"; };
 		A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListPresenter.swift; sourceTree = "<group>"; };
+		A340DE7420F2BFF800039814 /* UICollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		A33E3BE820F2B696004C2C46 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				A340DE7420F2BFF800039814 /* UICollectionViewExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			files = (
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
 				A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */,
+				A340DE7520F2BFF800039814 /* UICollectionViewExtension.swift in Sources */,
 				A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */,
 				A33E3BEA20F2BA3E004C2C46 /* MoviesListViewContract.swift in Sources */,
 				A33E3BEC20F2BA48004C2C46 /* MoviesListDataSource.swift in Sources */,
