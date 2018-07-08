@@ -13,6 +13,10 @@
 		A33E3BD720F2B1ED004C2C46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A33E3BD520F2B1ED004C2C46 /* LaunchScreen.storyboard */; };
 		A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */; };
 		A33E3BE620F2B52B004C2C46 /* MoviesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */; };
+		A33E3BEA20F2BA3E004C2C46 /* MoviesListViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BE920F2BA3E004C2C46 /* MoviesListViewContract.swift */; };
+		A33E3BEC20F2BA48004C2C46 /* MoviesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */; };
+		A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */; };
+		A33E3BF020F2BA61004C2C46 /* MoviesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		A33E3BD820F2B1ED004C2C46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
 		A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesListViewController.xib; sourceTree = "<group>"; };
+		A33E3BE920F2BA3E004C2C46 /* MoviesListViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewContract.swift; sourceTree = "<group>"; };
+		A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListDataSource.swift; sourceTree = "<group>"; };
+		A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRepository.swift; sourceTree = "<group>"; };
+		A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,10 @@
 			children = (
 				A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */,
 				A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */,
+				A33E3BE920F2BA3E004C2C46 /* MoviesListViewContract.swift */,
+				A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */,
+				A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */,
+				A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */,
 			);
 			path = "Movies List";
 			sourceTree = "<group>";
@@ -264,7 +276,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
+				A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */,
 				A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */,
+				A33E3BEA20F2BA3E004C2C46 /* MoviesListViewContract.swift in Sources */,
+				A33E3BEC20F2BA48004C2C46 /* MoviesListDataSource.swift in Sources */,
+				A33E3BF020F2BA61004C2C46 /* MoviesListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
