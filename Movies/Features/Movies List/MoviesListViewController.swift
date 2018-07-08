@@ -73,6 +73,18 @@ extension MoviesListViewController: MoviesListViewContract {
             collectionView.hideRefreshControl()
         }
     }
+    
+    func updateView(with movies: [Movie]) {
+        self.movies = movies
+        collectionView.reloadData()
+    }
+    
+    func showError(message: String) {
+        let errorAlertController = UIAlertController(title: "Oops, an error occured", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        errorAlertController.addAction(okAction)
+        present(errorAlertController, animated: true, completion: nil)
+    }
 }
 
 extension MoviesListViewController: UISearchResultsUpdating {
