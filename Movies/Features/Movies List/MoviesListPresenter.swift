@@ -85,7 +85,7 @@ class MoviesListPresenter {
             .subscribe(onNext: { [weak self] image in
                 self?.view?.setCellImage(at: index, with: image)
             }, onError: { _ in
-                // TODO:
+                // TODO: add placeholder image
             })
             .disposed(by: bag)
     }

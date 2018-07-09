@@ -62,7 +62,6 @@ class MoviesListViewController: UIViewController {
         let height = width * 1.56 + movieTextHeight
         cellSize = CGSize(width: width, height: height)
         
-        // TODO: reactivate.
 //        let refreshControl = UIRefreshControl()
 //        refreshControl.addTarget(self,
 //                                 action: #selector(didPullToRefresh),
@@ -131,11 +130,11 @@ extension MoviesListViewController: MoviesListViewContract {
     }
     
     func setLoadingAppearance(to loading: Bool) {
-        if loading {
-            collectionView.showRefreshControl()
-        } else {
-            collectionView.hideRefreshControl()
-        }
+//        if loading {
+//            collectionView.showRefreshControl()
+//        } else {
+//            collectionView.hideRefreshControl()
+//        }
     }
     
     func updateView(with movies: [Movie]) {
@@ -188,7 +187,7 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 30
+        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 60
         
         if endOfScrollView {
             presenter.paginate()
@@ -198,7 +197,7 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         guard !decelerate else { return }
         
-        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 30
+        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 60
 
         if endOfScrollView {
             presenter.paginate()
