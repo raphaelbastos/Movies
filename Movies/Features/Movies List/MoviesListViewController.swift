@@ -144,6 +144,12 @@ extension MoviesListViewController: MoviesListViewContract {
         errorAlertController.addAction(okAction)
         present(errorAlertController, animated: true, completion: nil)
     }
+    
+    func showMovieDetails(id: String, model: MovieDetailsViewModel){
+        let detailsViewController = MovieDetailsViewController()
+        detailsViewController.model = model
+        navigationController?.pushViewController(detailsViewController, animated: true)
+    }
 }
 
 extension MoviesListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -158,6 +164,10 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
         let model = presenter.getCellModel(at: indexPath.item)
         cell.setup(with: model)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.onItemSelection(at: indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView,

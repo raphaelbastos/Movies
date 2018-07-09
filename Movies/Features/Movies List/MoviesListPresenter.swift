@@ -10,7 +10,7 @@ import RxSwift
 
 class MoviesListPresenter {
     private weak var view: MoviesListViewContract?
-    private var dataSource: MoviesListDataSource?
+    private weak var dataSource: MoviesListDataSource?
     private let genreDataSource = GenreRepository()
     
     private let bag = DisposeBag()
@@ -49,6 +49,12 @@ class MoviesListPresenter {
                 self?.view?.showError(message: error.localizedDescription)
             })
             .disposed(by: bag)
+    }
+    
+    func onItemSelection(at index: Int) {
+        guard let movieId = movies[index].id else { return }
+        
+        view?.showMovieDetails(id: movieId)
     }
     
     func onSearchCancel() {
