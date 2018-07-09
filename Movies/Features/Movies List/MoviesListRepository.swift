@@ -40,6 +40,33 @@ class MoviesListRepository: MoviesListDataSource {
         }
     }
     
+    func searchMovie(title: String, page: Int) -> Observable<[Movie]> {
+        let parameters = ["api_key": TMDbManager.shared.key,
+                          "language": "en-US",
+                          "page": "\(page)",
+                          "query": "\(title)",
+                          "include_adult": "false"]
+        
+        return request(.get,
+                       TMDbManager.shared.movieSearchPath,
+                       parameters: parameters,
+                       encoding: URLEncoding.default,
+                       headers: nil)
+            .responseJSON()
+            .flatMap { (response) -> Observable<[Movie]> in
+                switch response.result {
+                case .failure(let error):
+                    return Observable.error(error)
+                case .success(let value):
+                    guard let results = (value as? [String: Any])?["results"] as? [[String: Any]] else {
+                        return Observable.empty()
+                    }
+                    let movies = Mapper<Movie>().mapArray(JSONArray: results)
+                    return Observable.from(optional: movies)
+                }
+        }
+    }
+    
     func getImage(path: String) -> Observable<UIImage> {
         guard let baseUrl = UserDefaults.standard.string(forKey: "imagesBaseUrl") else {
             return Observable.empty()

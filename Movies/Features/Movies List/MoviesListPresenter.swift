@@ -30,7 +30,24 @@ class MoviesListPresenter {
     }
     
     func onSearchBarEntry(text: String) {
+        guard text.count > 0 else {
+            reloadData()
+            return
+        }
         
+        dataSource?.searchMovie(title: text, page: 1)
+            .subscribe(onNext: { [weak self] searchedMovies in
+                self?.movies = searchedMovies
+                self?.view?.updateView(with: searchedMovies)
+            }, onError: { [weak self] error in
+                self?.view?.showError(message: error.localizedDescription)
+            })
+            .disposed(by: bag)
+    }
+    
+    func onSearchCancel() {
+        view?.updateView(with: [])
+        reloadData()
     }
     
     func willDisplayCellAt(index: Int) {
@@ -39,7 +56,7 @@ class MoviesListPresenter {
         dataSource?.getImage(path: path)
             .subscribe(onNext: { [weak self] image in
                 self?.view?.setCellImage(at: index, with: image)
-            }, onError: { error in
+            }, onError: { _ in
                 // TODO:
             })
             .disposed(by: bag)

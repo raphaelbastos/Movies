@@ -17,7 +17,6 @@ class MoviesListViewController: UIViewController {
     
     private var presenter: MoviesListPresenter!
     private var movies = [Movie]()
-    private var filteredMovies = [Movie]()
     private let bag = DisposeBag()
     
     private var cellSize: CGSize!
@@ -29,6 +28,7 @@ class MoviesListViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupSearch()
+        observeSearchBar()
         setupCollectionView()
         setupPresenter()
     }
@@ -78,6 +78,9 @@ class MoviesListViewController: UIViewController {
     private func setupSearch() {
         searchController.searchBar.placeholder = "Search all movies"
         navigationItem.searchController = searchController
+    }
+    
+    private func observeSearchBar() {
         searchController.searchBar.rx
             .text
             .orEmpty
@@ -88,6 +91,14 @@ class MoviesListViewController: UIViewController {
             })
             .subscribe(onNext: { [weak self] text in
                 self?.presenter.onSearchBarEntry(text: text)
+            })
+            .disposed(by: bag)
+        
+        searchController.searchBar.rx
+            .cancelButtonClicked
+            .asObservable()
+            .subscribe(onNext: { _ in
+                self.presenter.onSearchCancel()
             })
             .disposed(by: bag)
     }
