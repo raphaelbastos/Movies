@@ -42,6 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let moviesListViewController = MoviesListViewController()
         let navigationController = UINavigationController(rootViewController: moviesListViewController)
         navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.tintColor = UIColor(red: 232/255,
+                                                               green: 49/255,
+                                                               blue: 81/255,
+                                                               alpha: 1)
         return navigationController
     }
 }

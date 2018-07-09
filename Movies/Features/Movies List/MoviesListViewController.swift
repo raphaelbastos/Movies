@@ -83,6 +83,10 @@ class MoviesListViewController: UIViewController {
         definesPresentationContext = true
         searchController.isActive = true
         navigationItem.searchController = searchController
+        searchController.searchBar.tintColor = UIColor(red: 232/255,
+                                                       green: 49/255,
+                                                       blue: 81/255,
+                                                       alpha: 1)
     }
     
     private func observeSearchBar() {
