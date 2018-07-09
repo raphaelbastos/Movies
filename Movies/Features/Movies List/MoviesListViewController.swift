@@ -61,6 +61,7 @@ class MoviesListViewController: UIViewController {
         let height = width * 1.56 + movieTextHeight
         cellSize = CGSize(width: width, height: height)
         
+        // TODO: reactivate.
 //        let refreshControl = UIRefreshControl()
 //        refreshControl.addTarget(self,
 //                                 action: #selector(didPullToRefresh),
@@ -108,7 +109,7 @@ class MoviesListViewController: UIViewController {
 
     // MARK: - Actions
     @objc private func didPullToRefresh() {
-        // TODO:
+        presenter.onPullToRefresh()
     }
 }
 
