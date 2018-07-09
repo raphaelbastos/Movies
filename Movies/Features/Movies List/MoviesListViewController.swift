@@ -76,7 +76,7 @@ class MoviesListViewController: UIViewController {
     }
     
     private func setupSearch() {
-        searchController.searchBar.placeholder = "Search all movies"
+        searchController.searchBar.placeholder = "Search the entire database"
         searchController.obscuresBackgroundDuringPresentation = false
         definesPresentationContext = true
         searchController.isActive = true
