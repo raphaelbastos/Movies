@@ -16,6 +16,7 @@ class Movie: Mappable {
     var voteAverage: Double?
     var budget: Int?
     var releaseDate: String?
+    var genreIds: [Int]?
     
     init() { }
     
@@ -29,5 +30,6 @@ class Movie: Mappable {
         self.poster <- map["poster_path"]
         self.backdrop <- map["backdrop_path"]
         self.voteAverage <- map["vote_average"]
+        self.genreIds <- map["genre_ids"]
     }
 }

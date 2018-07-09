@@ -23,6 +23,8 @@
 		A340DE7C20F2C24700039814 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7B20F2C24700039814 /* Movie.swift */; };
 		A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7E20F2C6C400039814 /* TMDbManager.swift */; };
 		A340DE8120F30CBC00039814 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE8020F30CBC00039814 /* Genre.swift */; };
+		A340DE8720F30D8500039814 /* GenreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE8620F30D8500039814 /* GenreRepository.swift */; };
+		A340DE8920F30D8C00039814 /* GenreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE8820F30D8C00039814 /* GenreDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		A340DE7B20F2C24700039814 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A340DE7E20F2C6C400039814 /* TMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbManager.swift; sourceTree = "<group>"; };
 		A340DE8020F30CBC00039814 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		A340DE8620F30D8500039814 /* GenreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreRepository.swift; sourceTree = "<group>"; };
+		A340DE8820F30D8C00039814 /* GenreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		A33E3BE020F2B4EC004C2C46 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				A340DE8520F30D7B00039814 /* Genre */,
 				A33E3BE120F2B4EC004C2C46 /* Movies List */,
 			);
 			path = Features;
@@ -113,12 +118,12 @@
 			isa = PBXGroup;
 			children = (
 				A340DE7620F2C18F00039814 /* Views */,
+				A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */,
+				A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */,
+				A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */,
+				A33E3BE920F2BA3E004C2C46 /* MoviesListViewContract.swift */,
 				A33E3BE320F2B52B004C2C46 /* MoviesListViewController.swift */,
 				A33E3BE420F2B52B004C2C46 /* MoviesListViewController.xib */,
-				A33E3BE920F2BA3E004C2C46 /* MoviesListViewContract.swift */,
-				A33E3BEB20F2BA48004C2C46 /* MoviesListDataSource.swift */,
-				A33E3BED20F2BA52004C2C46 /* MoviesListRepository.swift */,
-				A33E3BEF20F2BA61004C2C46 /* MoviesListPresenter.swift */,
 			);
 			path = "Movies List";
 			sourceTree = "<group>";
@@ -163,6 +168,15 @@
 				A340DE7E20F2C6C400039814 /* TMDbManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		A340DE8520F30D7B00039814 /* Genre */ = {
+			isa = PBXGroup;
+			children = (
+				A340DE8820F30D8C00039814 /* GenreDataSource.swift */,
+				A340DE8620F30D8500039814 /* GenreRepository.swift */,
+			);
+			path = Genre;
 			sourceTree = "<group>";
 		};
 		F4C7E749F90E19961A57B7E6 /* Pods */ = {
@@ -313,8 +327,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
+				A340DE8720F30D8500039814 /* GenreRepository.swift in Sources */,
 				A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */,
 				A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */,
+				A340DE8920F30D8C00039814 /* GenreDataSource.swift in Sources */,
 				A340DE8120F30CBC00039814 /* Genre.swift in Sources */,
 				A340DE7C20F2C24700039814 /* Movie.swift in Sources */,
 				A340DE7520F2BFF800039814 /* UICollectionViewExtension.swift in Sources */,

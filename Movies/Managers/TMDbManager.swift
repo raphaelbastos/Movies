@@ -18,6 +18,7 @@ struct TMDbManager {
     let movieSearchPath = "https://api.themoviedb.org/3/search/movie"
     let upcomingMoviesPath = "https://api.themoviedb.org/3/movie/upcoming"
     let configurationUrl = "https://api.themoviedb.org/3/configuration"
+    let genresPath = "https://api.themoviedb.org/3/genre/movie/list"
     
     private let bag = DisposeBag()
     

@@ -11,9 +11,11 @@ import RxSwift
 class MoviesListPresenter {
     private weak var view: MoviesListViewContract?
     private var dataSource: MoviesListDataSource?
+    private let genreDataSource = GenreRepository()
     
     private let bag = DisposeBag()
     private var movies = [Movie]()
+    private var genresById = [Int: Genre]()
     private var currentPage = 1
     private var isLoading = false
     
@@ -22,9 +24,9 @@ class MoviesListPresenter {
         self.dataSource = dataSource
     }
  
-    // MARK: - Class Methods
+    // MARK: - Contract
     func onViewDidLoad() {
-        loadUpcomingMovies()
+        initialFetch()
     }
     
     func onPullToRefresh() {
@@ -56,7 +58,18 @@ class MoviesListPresenter {
     
     func getCellModel(at index: Int) -> MovieCellViewModel {
         let movie = movies[index]
-        let model = MovieCellViewModel(title: movie.title ?? "?", genre: nil/*movie.gender*/, year: movie.releaseDate)
+        var genre: Genre?
+        
+        if let mainGenreId = movie.genreIds?.first {
+            genre = genresById[mainGenreId]
+        }
+        
+        var yearString: String?
+        if let year = movie.releaseDate?.split(separator: "-").first {
+            yearString = String(year)
+        }
+        
+        let model = MovieCellViewModel(title: movie.title ?? "?", genre: genre?.name, year: yearString)
         return model
     }
     
@@ -76,6 +89,40 @@ class MoviesListPresenter {
         loadUpcomingMovies()
     }
     
+    // MARK: - Class Methods
+    private func initialFetch() {
+        guard !isLoading, let dataSource = dataSource else { return }
+        
+        isLoading = true
+        view?.setLoadingAppearance(to: true)
+        
+        let upcomingObservable: Observable<[Movie]> = dataSource.getUpcomingMovies(page: currentPage)
+        let genreObservable: Observable<[Genre]> = genreDataSource.getGenres()
+        
+        Observable.zip(upcomingObservable,
+                       genreObservable,
+                       resultSelector: { return ($0, $1) })
+            .subscribe(onNext: { [weak self] (movies, genres) in
+                self?.isLoading = false
+                
+                genres.forEach { genre in
+                    if let id = genre.id {
+                        self?.genresById[id] = genre
+                    }
+                }
+                
+                self?.movies.append(contentsOf: movies)
+                self?.view?.setLoadingAppearance(to: true)
+                self?.view?.updateView(with: self?.movies ?? [])
+                self?.currentPage += 1
+                }, onError: { [weak self] error in
+                    self?.isLoading = false
+                    self?.view?.setLoadingAppearance(to: true)
+                    self?.view?.showError(message: error.localizedDescription)
+            })
+            .disposed(by: bag)
+    }
+    
     private func loadUpcomingMovies() {
         guard !isLoading else { return }
         
@@ -86,7 +133,7 @@ class MoviesListPresenter {
                 self?.isLoading = false
                 self?.movies.append(contentsOf: movies)
                 self?.view?.setLoadingAppearance(to: true)
-                self?.view?.updateView(with: movies)//self?.movies ?? [])
+                self?.view?.updateView(with: self?.movies ?? [])
                 self?.currentPage += 1
             }, onError: { [weak self] error in
                 self?.isLoading = false
