@@ -50,7 +50,6 @@ class MoviesListViewController: UIViewController {
 
     private func setupNavigationBar() {
         title = "Upcoming Movies"
-        navigationController?.navigationBar.prefersLargeTitles = true
         self.extendedLayoutIncludesOpaqueBars = true
     }
 
@@ -77,6 +76,9 @@ class MoviesListViewController: UIViewController {
     
     private func setupSearch() {
         searchController.searchBar.placeholder = "Search all movies"
+        searchController.obscuresBackgroundDuringPresentation = false
+        definesPresentationContext = true
+        searchController.isActive = true
         navigationItem.searchController = searchController
     }
     

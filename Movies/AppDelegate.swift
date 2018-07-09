@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func loadRootScreen() -> UIViewController {
         let moviesListViewController = MoviesListViewController()
         let navigationController = UINavigationController(rootViewController: moviesListViewController)
-        
+        navigationController.navigationBar.prefersLargeTitles = true
         return navigationController
     }
 }
