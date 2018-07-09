@@ -16,12 +16,12 @@ class MoviesListRepository: MoviesListDataSource {
     private let cache = NSCache<NSString, UIImage>()
 
     func getLatestMovies(page: Int) -> Observable<[Movie]> {
-        let parameters = ["api_key": TMDbManager.key,
+        let parameters = ["api_key": TMDbManager.shared.key,
                           "language": "en-US",
                           "page": "\(page)"]
 
         return request(.get,
-                       TMDbManager.upcomingMoviesPath,
+                       TMDbManager.shared.upcomingMoviesPath,
                        parameters: parameters,
                        encoding: URLEncoding.default,
                        headers: nil)
@@ -40,7 +40,29 @@ class MoviesListRepository: MoviesListDataSource {
         }
     }
     
-//    func getImage(path: String) -> Single<UIImage> {
-//        
-//    }
+    func getImage(path: String) -> Observable<UIImage> {
+        guard let baseUrl = UserDefaults.standard.string(forKey: "imagesBaseUrl") else {
+            return Observable.empty()
+        }
+        
+        let imageUrl = "\(baseUrl)/w300\(path)"
+        
+        if let cachedImage = cache.object(forKey: imageUrl as NSString) {
+            return Observable.just(cachedImage)
+        } else {
+            return request(.get,
+                           imageUrl,
+                           parameters: nil,
+                           encoding: URLEncoding.default,
+                           headers: nil)
+                .responseData()
+                .flatMap { (_, data) -> Observable<UIImage> in
+                    guard let image = UIImage(data: data) else {
+                        return Observable.empty()
+                    }
+                    self.cache.setObject(image, forKey: imageUrl as NSString)
+                    return Observable.just(image)
+            }
+        }
+    }
 }

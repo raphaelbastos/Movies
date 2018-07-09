@@ -13,6 +13,7 @@ class MoviesListPresenter {
     private var dataSource: MoviesListDataSource?
     
     private let bag = DisposeBag()
+    private var movies = [Movie]()
     
     init(view: MoviesListViewContract, dataSource: MoviesListDataSource) {
         self.view = view
@@ -28,10 +29,23 @@ class MoviesListPresenter {
         reloadData()
     }
     
+    func willDisplayCellAt(index: Int) {
+        guard let path = movies[index].poster else { return }
+        
+        dataSource?.getImage(path: path)
+            .subscribe(onNext: { image in
+                self.view?.setCellImage(at: index, with: image)
+            }, onError: { error in
+                // TODO:
+            })
+            .disposed(by: bag)
+    }
+    
     private func reloadData() {
         view?.setLoadingAppearance(to: true)
         dataSource?.getLatestMovies(page: 1)
             .subscribe(onNext: { movies in
+                self.movies = movies
                 self.view?.setLoadingAppearance(to: true)
                 self.view?.updateView(with: movies)
             }, onError: { error in

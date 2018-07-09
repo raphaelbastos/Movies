@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Movies/Features/Movies List/MoviesListRepository.swift"
-            timestampString = "552787328.542629"
+            timestampString = "552789076.274245"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Movies/Features/Movies List/MoviesListViewController.swift"
-            timestampString = "552787328.542699"
+            timestampString = "552789076.274315"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "collectionView(_:layout:minimumInteritemSpacingForSectionAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Movies/Features/Movies List/MoviesListViewController.swift"
-            timestampString = "552787328.543012"
+            filePath = "Movies/Features/Movies List/MoviesListPresenter.swift"
+            timestampString = "552789076.274639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "collectionView(_:layout:sizeForItemAt:)"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "willDisplayCellAt(index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

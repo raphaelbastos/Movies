@@ -44,7 +44,7 @@ class MoviesListViewController: UIViewController {
 
     private func setupNavigationBar() {
         title = "Movies"
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.extendedLayoutIncludesOpaqueBars = true
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
@@ -57,11 +57,11 @@ class MoviesListViewController: UIViewController {
         let height = width * 1.56
         cellSize = CGSize(width: width, height: height)
         
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self,
-                                 action: #selector(didPullToRefresh),
-                                 for: .valueChanged)
-        collectionView.refreshControl = refreshControl
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self,
+//                                 action: #selector(didPullToRefresh),
+//                                 for: .valueChanged)
+//        collectionView.refreshControl = refreshControl
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: MovieCollectionViewCell.self)
@@ -78,6 +78,17 @@ class MoviesListViewController: UIViewController {
 }
 
 extension MoviesListViewController: MoviesListViewContract {
+    func setCellImage(at index: Int, with image: UIImage) {
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(item: index, section: 0)
+            guard let cell = self.collectionView.cellForItem(at: indexPath) as? MovieCollectionViewCell else {
+                return
+            }
+            
+            cell.setup(with: image)
+        }
+    }
+    
     func setLoadingAppearance(to loading: Bool) {
         if loading {
             collectionView.showRefreshControl()
@@ -125,6 +136,10 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        presenter.willDisplayCellAt(index: indexPath.item)
     }
     
     func collectionView(_ collectionView: UICollectionView,

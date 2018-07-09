@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        initialSetup()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = UIColor.white
         window?.makeKeyAndVisible()
@@ -33,7 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) { }
 
     // MARK: - Util
-
+    private func initialSetup() {
+        TMDbManager.shared.getConfiguration()
+    }
+    
     private func loadRootScreen() -> UIViewController {
         let moviesListViewController = MoviesListViewController()
         let navigationController = UINavigationController(rootViewController: moviesListViewController)

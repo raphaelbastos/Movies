@@ -12,5 +12,12 @@ import Reusable
 class MovieCollectionViewCell: UICollectionViewCell, NibReusable {
     @IBOutlet weak var movieImageView: UIImageView!
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        movieImageView.image = nil
+    }
+
+    func setup(with image: UIImage) {
+        movieImageView.image = image
+    }
 }

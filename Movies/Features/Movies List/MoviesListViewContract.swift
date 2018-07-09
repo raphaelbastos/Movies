@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MoviesListViewContract {
     func updateView(with movies: [Movie])
     func showError(message: String)
     func setLoadingAppearance(to loading: Bool)
+    func setCellImage(at index: Int, with image: UIImage)
 }
