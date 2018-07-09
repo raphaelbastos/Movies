@@ -15,4 +15,5 @@ protocol MoviesListViewContract: AnyObject {
     func showError(message: String)
     func setLoadingAppearance(to loading: Bool)
     func setCellImage(at index: Int, with image: UIImage)
+    func showMovieDetails(id: Int, model: MovieDetailsViewModel)
 }

@@ -17,6 +17,7 @@ struct TMDbManager {
     let key = "1f54bd990f1cdfb230adb312546d765d"
     let movieSearchPath = "https://api.themoviedb.org/3/search/movie"
     let upcomingMoviesPath = "https://api.themoviedb.org/3/movie/upcoming"
+    let movieDetailsPath = "https://api.themoviedb.org/3/movie"
     let configurationUrl = "https://api.themoviedb.org/3/configuration"
     let genresPath = "https://api.themoviedb.org/3/genre/movie/list"
     

@@ -9,7 +9,7 @@
 import RxSwift
 import UIKit
 
-protocol MoviesListDataSource {
+protocol MoviesListDataSource: AnyObject {
     func getUpcomingMovies(page: Int) -> Observable<[Movie]>
     func searchMovie(title: String, page: Int) -> Observable<[Movie]>
     func getImage(path: String) -> Observable<UIImage>
