@@ -30,7 +30,7 @@ struct TMDbManager {
                 encoding: URLEncoding.default,
                 headers: nil)
             .responseJSON()
-            .subscribe(onNext: { (response) in
+            .subscribe(onNext: { response in
                 switch response.result {
                 case .success(let value):
                     if let value = value as? [String: Any],

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol MoviesListViewContract {
+protocol MoviesListViewContract: AnyObject {
     func updateView(with movies: [Movie])
     func showError(message: String)
     func setLoadingAppearance(to loading: Bool)

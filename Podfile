@@ -5,4 +5,5 @@ target 'Movies' do
   pod 'RxAlamofire', '4.2.0'
   pod 'ObjectMapper', '3.3.0'
   pod 'SwiftLint', '0.26.0'
+  pod 'RxCocoa', '4.2.0'
 end

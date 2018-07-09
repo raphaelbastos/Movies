@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MoviesListViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -15,6 +17,9 @@ class MoviesListViewController: UIViewController {
     
     private var presenter: MoviesListPresenter!
     private var movies = [Movie]()
+    private var filteredMovies = [Movie]()
+    private let bag = DisposeBag()
+    
     private var cellSize: CGSize!
     private let numberOfColumns: CGFloat = 3
     private let collectionViewSideInsets: CGFloat = 20
@@ -23,6 +28,7 @@ class MoviesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationBar()
+        setupSearch()
         setupCollectionView()
         setupPresenter()
     }
@@ -36,18 +42,16 @@ class MoviesListViewController: UIViewController {
         super.viewDidAppear(animated)
         navigationItem.hidesSearchBarWhenScrolling = true
     }
-    
+
     private func setupPresenter() {
         presenter = MoviesListPresenter(view: self, dataSource: MoviesListRepository())
         presenter.onViewDidLoad()
     }
 
     private func setupNavigationBar() {
-        title = "Movies"
+        title = "Upcoming Movies"
         navigationController?.navigationBar.prefersLargeTitles = true
         self.extendedLayoutIncludesOpaqueBars = true
-        searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
     }
 
     private func setupCollectionView() {
@@ -69,6 +73,23 @@ class MoviesListViewController: UIViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         collectionView.collectionViewLayout = flowLayout
+    }
+    
+    private func setupSearch() {
+        searchController.searchBar.placeholder = "Search all movies"
+        navigationItem.searchController = searchController
+        searchController.searchBar.rx
+            .text
+            .orEmpty
+            .debounce(0.5, scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .filter({ (text) -> Bool in
+                return !text.isEmpty
+            })
+            .subscribe(onNext: { [weak self] text in
+                self?.presenter.onSearchBarEntry(text: text)
+            })
+            .disposed(by: bag)
     }
 
     // MARK: - Actions
@@ -107,12 +128,6 @@ extension MoviesListViewController: MoviesListViewContract {
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         errorAlertController.addAction(okAction)
         present(errorAlertController, animated: true, completion: nil)
-    }
-}
-
-extension MoviesListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-
     }
 }
 
