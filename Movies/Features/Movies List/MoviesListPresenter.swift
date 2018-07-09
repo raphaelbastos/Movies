@@ -50,6 +50,12 @@ class MoviesListPresenter {
         reloadData()
     }
     
+    func getCellModel(at index: Int) -> MovieCellViewModel {
+        let movie = movies[index]
+        let model = MovieCellViewModel(title: movie.title ?? "?", genre: nil/*movie.gender*/, year: movie.releaseDate)
+        return model
+    }
+    
     func willDisplayCellAt(index: Int) {
         guard let path = movies[index].poster else { return }
         

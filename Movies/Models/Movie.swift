@@ -15,6 +15,7 @@ class Movie: Mappable {
     var backdrop: String?
     var voteAverage: Double?
     var budget: Int?
+    var releaseDate: String?
     
     init() { }
     
@@ -22,6 +23,7 @@ class Movie: Mappable {
     
     func mapping(map: Map) {
         self.id <- map["id"]
+        self.releaseDate <- map["release_date"]
         self.budget <- map["budget"]
         self.title <- map["title"]
         self.poster <- map["poster_path"]

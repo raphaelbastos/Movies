@@ -20,7 +20,7 @@ class MoviesListViewController: UIViewController {
     private let bag = DisposeBag()
     
     private var cellSize: CGSize!
-    private let numberOfColumns: CGFloat = 3
+    private let numberOfColumns: CGFloat = 2
     private let collectionViewSideInsets: CGFloat = 20
     // MARK: Lyfecicle
     
@@ -54,10 +54,11 @@ class MoviesListViewController: UIViewController {
     }
 
     private func setupCollectionView() {
+        let movieTextHeight: CGFloat = 55
         let availableWidth = view.frame.width
             - collectionViewSideInsets
         let width = availableWidth/numberOfColumns
-        let height = width * 1.56
+        let height = width * 1.56 + movieTextHeight
         cellSize = CGSize(width: width, height: height)
         
 //        let refreshControl = UIRefreshControl()
@@ -119,7 +120,7 @@ extension MoviesListViewController: MoviesListViewContract {
                 return
             }
             
-            cell.setup(with: image)
+            cell.setImage(image)
         }
     }
     
@@ -153,6 +154,8 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MovieCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
+        let model = presenter.getCellModel(at: indexPath.item)
+        cell.setup(with: model)
         return cell
     }
     

@@ -19,21 +19,61 @@
                 <rect key="frame" x="0.0" y="0.0" width="230" height="331"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GKB-1E-qwz">
-                        <rect key="frame" x="0.0" y="0.0" width="230" height="331"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GKB-1E-qwz">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="275.5"/>
                     </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="800" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v24-xu-e8F">
+                        <rect key="frame" x="5" y="282.5" width="220" height="36.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="White Chicks" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="feg-Ib-4ez">
+                                <rect key="frame" x="57.5" y="0.0" width="105.5" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="gra-U7-Et4">
+                                <rect key="frame" x="61.5" y="19.5" width="97" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comedy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6q-VK-3yy">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="1Zq-bv-fEd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJv-hD-uRV">
+                                        <rect key="frame" x="65" y="0.0" width="32" height="17"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="17" id="Lf8-CT-wiv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.83921568629999999" green="0.83921568629999999" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="GKB-1E-qwz" secondAttribute="trailing" id="1va-hU-gyv"/>
+                <constraint firstItem="v24-xu-e8F" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="4RT-Oo-XB7"/>
                 <constraint firstItem="GKB-1E-qwz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="WZ6-gx-aGf"/>
-                <constraint firstAttribute="bottom" secondItem="GKB-1E-qwz" secondAttribute="bottom" id="XtJ-rm-far"/>
+                <constraint firstAttribute="trailing" secondItem="v24-xu-e8F" secondAttribute="trailing" constant="5" id="Yuk-Ui-EO6"/>
                 <constraint firstItem="GKB-1E-qwz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="evY-LZ-Fwr"/>
+                <constraint firstItem="v24-xu-e8F" firstAttribute="top" secondItem="GKB-1E-qwz" secondAttribute="bottom" constant="7" id="kbu-23-D3b"/>
+                <constraint firstAttribute="bottom" secondItem="v24-xu-e8F" secondAttribute="bottom" constant="12" id="rFl-ux-TBP"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="230" height="331"/>
             <connections>
+                <outlet property="lbGenre" destination="S6q-VK-3yy" id="2pb-zg-rFb"/>
+                <outlet property="lbTitle" destination="feg-Ib-4ez" id="5zK-AU-gA2"/>
+                <outlet property="lbYear" destination="kJv-hD-uRV" id="y3z-EC-1cz"/>
                 <outlet property="movieImageView" destination="GKB-1E-qwz" id="3cC-5f-ocP"/>
             </connections>
             <point key="canvasLocation" x="-63" y="194.5"/>
