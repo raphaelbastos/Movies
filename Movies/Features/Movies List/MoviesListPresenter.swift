@@ -30,8 +30,8 @@ class MoviesListPresenter {
     
     private func reloadData() {
         view?.setLoadingAppearance(to: true)
-        dataSource?.getMovies(title: "")
-            .subscribe(onSuccess: { movies in
+        dataSource?.getLatestMovies(page: 1)
+            .subscribe(onNext: { movies in
                 self.view?.setLoadingAppearance(to: true)
                 self.view?.updateView(with: movies)
             }, onError: { error in

@@ -21,6 +21,7 @@
 		A340DE7920F2C1A300039814 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7720F2C1A300039814 /* MovieCollectionViewCell.swift */; };
 		A340DE7A20F2C1A300039814 /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A340DE7820F2C1A300039814 /* MovieCollectionViewCell.xib */; };
 		A340DE7C20F2C24700039814 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7B20F2C24700039814 /* Movie.swift */; };
+		A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7E20F2C6C400039814 /* TMDbManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		A340DE7720F2C1A300039814 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		A340DE7820F2C1A300039814 /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		A340DE7B20F2C24700039814 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		A340DE7E20F2C6C400039814 /* TMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				A33E3BD820F2B1ED004C2C46 /* Info.plist */,
 				A33E3BE020F2B4EC004C2C46 /* Features */,
 				A33E3BE720F2B689004C2C46 /* Helpers */,
+				A340DE7D20F2C6B100039814 /* Managers */,
 				A33E3BE220F2B515004C2C46 /* Models */,
 			);
 			path = Movies;
@@ -149,6 +152,14 @@
 				A340DE7820F2C1A300039814 /* MovieCollectionViewCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A340DE7D20F2C6B100039814 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A340DE7E20F2C6C400039814 /* TMDbManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		F4C7E749F90E19961A57B7E6 /* Pods */ = {
@@ -298,6 +309,7 @@
 			files = (
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
 				A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */,
+				A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */,
 				A340DE7C20F2C24700039814 /* Movie.swift in Sources */,
 				A340DE7520F2BFF800039814 /* UICollectionViewExtension.swift in Sources */,
 				A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */,

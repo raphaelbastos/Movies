@@ -15,7 +15,9 @@ class MoviesListViewController: UIViewController {
     
     private var presenter: MoviesListPresenter!
     private var movies = [Movie]()
-    
+    private var cellSize: CGSize!
+    private let numberOfColumns: CGFloat = 3
+    private let collectionViewSideInsets: CGFloat = 20
     // MARK: Lyfecicle
     
     override func viewDidLoad() {
@@ -49,6 +51,12 @@ class MoviesListViewController: UIViewController {
     }
 
     private func setupCollectionView() {
+        let availableWidth = view.frame.width
+            - collectionViewSideInsets
+        let width = availableWidth/numberOfColumns
+        let height = width * 1.56
+        cellSize = CGSize(width: width, height: height)
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self,
                                  action: #selector(didPullToRefresh),
@@ -57,6 +65,10 @@ class MoviesListViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(cellType: MovieCollectionViewCell.self)
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        collectionView.collectionViewLayout = flowLayout
     }
 
     // MARK: - Actions
@@ -93,7 +105,7 @@ extension MoviesListViewController: UISearchResultsUpdating {
     }
 }
 
-extension MoviesListViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MoviesListViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
     }
@@ -101,5 +113,24 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MovieCollectionViewCell = collectionView.dequeueReusableCell(for: indexPath)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return cellSize
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        let sideInsets = collectionViewSideInsets/2
+        return UIEdgeInsets(top: 10, left: sideInsets, bottom: 10, right: sideInsets)
     }
 }

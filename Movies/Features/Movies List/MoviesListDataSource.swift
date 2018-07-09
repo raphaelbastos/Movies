@@ -9,5 +9,5 @@
 import RxSwift
 
 protocol MoviesListDataSource {
-    func getMovies(title: String) -> Single<[Movie]>
+    func getLatestMovies(page: Int) -> Observable<[Movie]>
 }
