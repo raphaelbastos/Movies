@@ -9,13 +9,14 @@
 import RxSwift
 
 class MovieDetailsPresenter {
-    private weak var dataSource: MovieDetailsDataSource?
+    private var dataSource: MovieDetailsDataSource?
+    private let listDataSource = MoviesListRepository()
     private weak var view: MovieDetailsViewContract?
-    private var id: String
+    private var id: Int
     
     private let bag = DisposeBag()
     
-    init(id: String, view: MovieDetailsViewContract, dataSource: MovieDetailsDataSource) {
+    init(id: Int, view: MovieDetailsViewContract, dataSource: MovieDetailsDataSource) {
         self.id = id
         self.view = view
         self.dataSource = dataSource
@@ -34,6 +35,7 @@ class MovieDetailsPresenter {
         dataSource?.getMovieDetails(id: id)
             .subscribe(onNext: { [weak self] movie in
                 self?.view?.setLoadingAppearance(to: false)
+                self?.loadImage(path: movie.backdrop)
                 if let model = self?.getViewModel(from: movie) {
                     self?.view?.updateView(with: model)
                 }
@@ -44,11 +46,27 @@ class MovieDetailsPresenter {
             .disposed(by: bag)
     }
     
+    private func loadImage(path: String?) {
+        guard let path = path else { return }
+        
+        listDataSource.getImage(path: path).subscribe(onNext: { image in
+            self.view?.setMovieImage(with: image)
+        }, onError: { error in
+            self.view?.showError(message: error.localizedDescription)
+        })
+        .disposed(by: bag)
+    }
+    
     // MARK: - Util
     
     private func getViewModel(from movie: Movie) -> MovieDetailsViewModel {
-        let model = MovieDetailsViewModel(tagLine: movie.tagLine,
-                                          rating: movie.rating,
+        var rating: String?
+        if let movieRating = movie.rating {
+            rating = "\(movieRating)"
+        }
+        let model = MovieDetailsViewModel(title: movie.title,
+                                          tagLine: movie.tagLine,
+                                          rating: rating,
                                           overview: movie.overview,
                                           releaseDate: movie.releaseDate,
                                           duration: movie.duration,

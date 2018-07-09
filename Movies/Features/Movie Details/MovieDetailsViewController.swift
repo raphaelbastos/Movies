@@ -9,6 +9,7 @@
 import UIKit
 
 struct MovieDetailsViewModel {
+    var title: String?
     var tagLine: String?
     var rating: String?
     var overview: String?
@@ -31,11 +32,11 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var svGenre: UIStackView!
     
     var model: MovieDetailsViewModel?
-    private var movieId: String = ""
+    private var movieId: Int = 0
     private var presenter: MovieDetailsPresenter!
     
     // MARK: - Lyfecicle
-    init(movieId: String) {
+    init(movieId: Int) {
         super.init(nibName: "MovieDetailsViewController", bundle: nil)
         self.movieId = movieId
     }
@@ -49,6 +50,7 @@ class MovieDetailsViewController: UIViewController {
         if let model = model {
             updateView(with: model)
         }
+        title = model?.title
         setupPresenter()
     }
     
@@ -75,16 +77,22 @@ extension MovieDetailsViewController: MovieDetailsViewContract {
         lbReleaseDate.text = model.releaseDate
         svRelease.isHidden = model.releaseDate == nil
         lbDuration.text = model.duration
-        lbDuration.isHidden = model.duration == nil
+        svDuration.isHidden = model.duration == nil
         lbGenre.text = model.genre
-        lbGenre.isHidden = model.genre == nil 
+        svGenre.isHidden = model.genre == nil 
     }
     
     func setLoadingAppearance(to loading: Bool) {
         if loading {
-            loadingView.startAnimating()
+            UIView.animate(withDuration: 0.2) {
+                self.loadingView.startAnimating()
+                self.loadingView.isHidden = false
+            }
         } else {
-            loadingView.stopAnimating()
+            UIView.animate(withDuration: 0.2) {
+                self.loadingView.stopAnimating()
+                self.loadingView.isHidden = true
+            }
         }
     }
     

@@ -31,6 +31,7 @@ class MoviesListViewController: UIViewController {
         observeSearchBar()
         setupCollectionView()
         setupPresenter()
+        presenter.onViewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +45,8 @@ class MoviesListViewController: UIViewController {
     }
 
     private func setupPresenter() {
-        presenter = MoviesListPresenter(view: self, dataSource: MoviesListRepository())
-        presenter.onViewDidLoad()
+        let dataSource = MoviesListRepository()
+        presenter = MoviesListPresenter(view: self, dataSource: dataSource)
     }
 
     private func setupNavigationBar() {
@@ -145,7 +146,7 @@ extension MoviesListViewController: MoviesListViewContract {
         present(errorAlertController, animated: true, completion: nil)
     }
     
-    func showMovieDetails(id: String, model: MovieDetailsViewModel) {
+    func showMovieDetails(id: Int, model: MovieDetailsViewModel) {
         let detailsViewController = MovieDetailsViewController(movieId: id)
         detailsViewController.model = model
         navigationController?.pushViewController(detailsViewController, animated: true)

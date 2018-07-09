@@ -9,5 +9,5 @@
 import RxSwift
 
 protocol MovieDetailsDataSource: AnyObject {
-    func getMovieDetails(id: String) -> Observable<Movie>
+    func getMovieDetails(id: Int) -> Observable<Movie>
 }

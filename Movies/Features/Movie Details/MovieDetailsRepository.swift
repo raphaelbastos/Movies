@@ -14,13 +14,12 @@ import ObjectMapper
 
 class MovieDetailsRepository: MovieDetailsDataSource {
     
-    func getMovieDetails(id: String) -> Observable<Movie> {
+    func getMovieDetails(id: Int) -> Observable<Movie> {
         let parameters: [String: Any] = ["api_key": TMDbManager.shared.key,
-                                         "language": "en-US",
-                                         "movie_id": id]
-        
+                                         "language": "en-US"]
+        let url = "\(TMDbManager.shared.movieDetailsPath)/\(id)"
         return request(.get,
-                       TMDbManager.shared.movieDetailsPath,
+                       url,
                        parameters: parameters,
                        encoding: URLEncoding.default,
                        headers: nil)
@@ -30,11 +29,11 @@ class MovieDetailsRepository: MovieDetailsDataSource {
                 case .failure(let error):
                     return Observable.error(error)
                 case .success(let value):
-                    guard let results = (value as? [String: Any])?["results"] as? [[String: Any]] else {
+                    guard let result = value as? [String: Any] else {
                         return Observable.empty()
                     }
-                    let movies = Mapper<Movie>().mapArray(JSONArray: results)
-                    return Observable.from(movies)
+                    let movie = Mapper<Movie>().map(JSON: result)
+                    return Observable.from(optional: movie)
                 }
             })
     }

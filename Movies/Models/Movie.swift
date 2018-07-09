@@ -21,7 +21,7 @@ class Movie: Mappable {
     var duration: String?
     var tagLine: String?
     var overview: String?
-    var rating: String?
+    var rating: Double?
     
     init() { }
     

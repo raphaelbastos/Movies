@@ -10,7 +10,7 @@ import RxSwift
 
 class MoviesListPresenter {
     private weak var view: MoviesListViewContract?
-    private weak var dataSource: MoviesListDataSource?
+    private var dataSource: MoviesListDataSource?
     private let genreDataSource = GenreRepository()
     
     private let bag = DisposeBag()
@@ -53,7 +53,7 @@ class MoviesListPresenter {
     
     func onItemSelection(at index: Int) {
         guard let movieId = movies[index].id else { return }
-        view?.showMovieDetails(id: "\(movieId)", model: getMovieDetailsModel(index: index))
+        view?.showMovieDetails(id: movieId, model: getMovieDetailsModel(index: index))
     }
     
     func onSearchCancel() {
@@ -95,18 +95,6 @@ class MoviesListPresenter {
     }
     
     // MARK: - Class Methods
-    private func getMovieDetailsModel(index: Int) -> MovieDetailsViewModel {
-        let movie = movies[index]
-        
-        let model = MovieDetailsViewModel(tagLine: movie.tagLine,
-                                          rating: movie.rating,
-                                          overview: movie.overview,
-                                          releaseDate: movie.releaseDate,
-                                          duration: movie.duration,
-                                          genre: movie.genres?.first?.name)
-        return model
-    }
-    
     private func initialFetch() {
         guard !isLoading, let dataSource = dataSource else { return }
         
@@ -138,6 +126,22 @@ class MoviesListPresenter {
                     self?.view?.showError(message: error.localizedDescription)
             })
             .disposed(by: bag)
+    }
+    
+    private func getMovieDetailsModel(index: Int) -> MovieDetailsViewModel {
+        let movie = movies[index]
+        var rating: String?
+        if let movieRating = movie.rating {
+            rating = "\(movieRating)"
+        }
+        let model = MovieDetailsViewModel(title: movie.title,
+                                          tagLine: movie.tagLine,
+                                          rating: rating,
+                                          overview: movie.overview,
+                                          releaseDate: movie.releaseDate,
+                                          duration: movie.duration,
+                                          genre: movie.genres?.first?.name)
+        return model
     }
     
     private func loadUpcomingMovies() {
