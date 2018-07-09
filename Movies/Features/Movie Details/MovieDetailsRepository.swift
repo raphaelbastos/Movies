@@ -6,16 +6,18 @@
 //  Copyright © 2018 Yves Bastos. All rights reserved.
 //
 
+import Foundation
 import RxSwift
 import RxAlamofire
 import Alamofire
+import ObjectMapper
 
 class MovieDetailsRepository: MovieDetailsDataSource {
     
     func getMovieDetails(id: String) -> Observable<Movie> {
-        let parameters = ["api_key": TMDbManager.shared.key,
-                          "language": "en-US",
-                          "movie_id": id]
+        let parameters: [String: Any] = ["api_key": TMDbManager.shared.key,
+                                         "language": "en-US",
+                                         "movie_id": id]
         
         return request(.get,
                        TMDbManager.shared.movieDetailsPath,
@@ -23,7 +25,7 @@ class MovieDetailsRepository: MovieDetailsDataSource {
                        encoding: URLEncoding.default,
                        headers: nil)
             .responseJSON()
-            .flatMap { (response) -> Observable<[Movie]> in
+            .flatMap({ response -> Observable<Movie> in
                 switch response.result {
                 case .failure(let error):
                     return Observable.error(error)
@@ -32,8 +34,8 @@ class MovieDetailsRepository: MovieDetailsDataSource {
                         return Observable.empty()
                     }
                     let movies = Mapper<Movie>().mapArray(JSONArray: results)
-                    return Observable.from(optional: movies)
+                    return Observable.from(movies)
                 }
-        }
+            })
     }
 }

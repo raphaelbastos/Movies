@@ -17,6 +17,11 @@ class Movie: Mappable {
     var budget: Int?
     var releaseDate: String?
     var genreIds: [Int]?
+    var genres: [Genre]?
+    var duration: String?
+    var tagLine: String?
+    var overview: String?
+    var rating: String?
     
     init() { }
     
@@ -31,5 +36,10 @@ class Movie: Mappable {
         self.backdrop <- map["backdrop_path"]
         self.voteAverage <- map["vote_average"]
         self.genreIds <- map["genre_ids"]
+        self.duration <- map["runtime"]
+        self.tagLine <- map["tagline"]
+        self.overview <- map["overview"]
+        self.genres <- map["genres"]
+        self.rating <- map["vote_average"]
     }
 }

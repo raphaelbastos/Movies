@@ -6,7 +6,7 @@
 //  Copyright © 2018 Yves Bastos. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol MovieDetailsViewContract: AnyObject {
     func showError(message: String)

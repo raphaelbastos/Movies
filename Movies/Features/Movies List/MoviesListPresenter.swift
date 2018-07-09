@@ -53,8 +53,7 @@ class MoviesListPresenter {
     
     func onItemSelection(at index: Int) {
         guard let movieId = movies[index].id else { return }
-        
-        view?.showMovieDetails(id: movieId)
+        view?.showMovieDetails(id: "\(movieId)", model: getMovieDetailsModel(index: index))
     }
     
     func onSearchCancel() {
@@ -96,6 +95,18 @@ class MoviesListPresenter {
     }
     
     // MARK: - Class Methods
+    private func getMovieDetailsModel(index: Int) -> MovieDetailsViewModel {
+        let movie = movies[index]
+        
+        let model = MovieDetailsViewModel(tagLine: movie.tagLine,
+                                          rating: movie.rating,
+                                          overview: movie.overview,
+                                          releaseDate: movie.releaseDate,
+                                          duration: movie.duration,
+                                          genre: movie.genres?.first?.name)
+        return model
+    }
+    
     private func initialFetch() {
         guard !isLoading, let dataSource = dataSource else { return }
         

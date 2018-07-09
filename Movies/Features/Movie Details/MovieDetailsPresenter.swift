@@ -34,8 +34,9 @@ class MovieDetailsPresenter {
         dataSource?.getMovieDetails(id: id)
             .subscribe(onNext: { [weak self] movie in
                 self?.view?.setLoadingAppearance(to: false)
-                let model = self?.getViewModel(from: movie)
-                self?.view?.updateView(with: model)
+                if let model = self?.getViewModel(from: movie) {
+                    self?.view?.updateView(with: model)
+                }
                 }, onError: { [weak self] error in
                     self?.view?.setLoadingAppearance(to: false)
                     self?.view?.showError(message: error.localizedDescription)
@@ -46,12 +47,12 @@ class MovieDetailsPresenter {
     // MARK: - Util
     
     private func getViewModel(from movie: Movie) -> MovieDetailsViewModel {
-        let model = MovieDetailsViewModel(tagLine: <#T##String?#>,
-                                          rating: <#T##String?#>,
-                                          overview: <#T##String?#>,
-                                          releaseDate: <#T##String?#>,
-                                          duration: <#T##String?#>,
-                                          genre: <#T##String?#>)
+        let model = MovieDetailsViewModel(tagLine: movie.tagLine,
+                                          rating: movie.rating,
+                                          overview: movie.overview,
+                                          releaseDate: movie.releaseDate,
+                                          duration: movie.duration,
+                                          genre: movie.genres?.first?.name)
         return model
     }
 }

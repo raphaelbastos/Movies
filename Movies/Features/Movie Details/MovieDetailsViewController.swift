@@ -31,18 +31,24 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var svGenre: UIStackView!
     
     var model: MovieDetailsViewModel?
-    private var movieId: String
+    private var movieId: String = ""
     private var presenter: MovieDetailsPresenter!
     
     // MARK: - Lyfecicle
     init(movieId: String) {
-        self.movieId = movieId
         super.init(nibName: "MovieDetailsViewController", bundle: nil)
+        self.movieId = movieId
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateView(with: model)
+        if let model = model {
+            updateView(with: model)
+        }
         setupPresenter()
     }
     
@@ -66,8 +72,12 @@ extension MovieDetailsViewController: MovieDetailsViewContract {
         lbRating.text = model.rating ?? "?"
         
         lbOverview.text = model.overview ?? "No overview available"
-        lbReleaseDate.text = model.releaseDate ?? "?"
-        
+        lbReleaseDate.text = model.releaseDate
+        svRelease.isHidden = model.releaseDate == nil
+        lbDuration.text = model.duration
+        lbDuration.isHidden = model.duration == nil
+        lbGenre.text = model.genre
+        lbGenre.isHidden = model.genre == nil 
     }
     
     func setLoadingAppearance(to loading: Bool) {

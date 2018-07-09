@@ -145,8 +145,8 @@ extension MoviesListViewController: MoviesListViewContract {
         present(errorAlertController, animated: true, completion: nil)
     }
     
-    func showMovieDetails(id: String, model: MovieDetailsViewModel){
-        let detailsViewController = MovieDetailsViewController()
+    func showMovieDetails(id: String, model: MovieDetailsViewModel) {
+        let detailsViewController = MovieDetailsViewController(movieId: id)
         detailsViewController.model = model
         navigationController?.pushViewController(detailsViewController, animated: true)
     }
