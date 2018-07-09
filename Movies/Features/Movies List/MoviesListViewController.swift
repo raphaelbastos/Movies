@@ -171,6 +171,24 @@ extension MoviesListViewController: UICollectionViewDataSource, UICollectionView
         return 0
     }
     
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 30
+        
+        if endOfScrollView {
+            presenter.paginate()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        guard !decelerate else { return }
+        
+        let endOfScrollView = (scrollView.contentSize.height - scrollView.contentOffset.y - view.frame.height) < 30
+
+        if endOfScrollView {
+            presenter.paginate()
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView,
                         willDisplay cell: UICollectionViewCell,
                         forItemAt indexPath: IndexPath) {

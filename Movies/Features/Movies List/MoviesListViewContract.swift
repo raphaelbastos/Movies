@@ -11,6 +11,7 @@ import UIKit
 
 protocol MoviesListViewContract: AnyObject {
     func updateView(with movies: [Movie])
+//    func updateView(appending latestMovies: [Movie])
     func showError(message: String)
     func setLoadingAppearance(to loading: Bool)
     func setCellImage(at index: Int, with image: UIImage)

@@ -15,7 +15,7 @@ import ObjectMapper
 class MoviesListRepository: MoviesListDataSource {
     private let cache = NSCache<NSString, UIImage>()
 
-    func getLatestMovies(page: Int) -> Observable<[Movie]> {
+    func getUpcomingMovies(page: Int) -> Observable<[Movie]> {
         let parameters = ["api_key": TMDbManager.shared.key,
                           "language": "en-US",
                           "page": "\(page)"]

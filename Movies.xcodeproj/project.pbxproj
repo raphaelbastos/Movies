@@ -22,6 +22,7 @@
 		A340DE7A20F2C1A300039814 /* MovieCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A340DE7820F2C1A300039814 /* MovieCollectionViewCell.xib */; };
 		A340DE7C20F2C24700039814 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7B20F2C24700039814 /* Movie.swift */; };
 		A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE7E20F2C6C400039814 /* TMDbManager.swift */; };
+		A340DE8120F30CBC00039814 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340DE8020F30CBC00039814 /* Genre.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		A340DE7820F2C1A300039814 /* MovieCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCollectionViewCell.xib; sourceTree = "<group>"; };
 		A340DE7B20F2C24700039814 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A340DE7E20F2C6C400039814 /* TMDbManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDbManager.swift; sourceTree = "<group>"; };
+		A340DE8020F30CBC00039814 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A340DE7B20F2C24700039814 /* Movie.swift */,
+				A340DE8020F30CBC00039814 /* Genre.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				A33E3BCD20F2B1EC004C2C46 /* AppDelegate.swift in Sources */,
 				A33E3BEE20F2BA52004C2C46 /* MoviesListRepository.swift in Sources */,
 				A340DE7F20F2C6C400039814 /* TMDbManager.swift in Sources */,
+				A340DE8120F30CBC00039814 /* Genre.swift in Sources */,
 				A340DE7C20F2C24700039814 /* Movie.swift in Sources */,
 				A340DE7520F2BFF800039814 /* UICollectionViewExtension.swift in Sources */,
 				A33E3BE520F2B52B004C2C46 /* MoviesListViewController.swift in Sources */,

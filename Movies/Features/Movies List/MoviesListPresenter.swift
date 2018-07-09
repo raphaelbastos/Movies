@@ -14,6 +14,8 @@ class MoviesListPresenter {
     
     private let bag = DisposeBag()
     private var movies = [Movie]()
+    private var currentPage = 1
+    private var isLoading = false
     
     init(view: MoviesListViewContract, dataSource: MoviesListDataSource) {
         self.view = view
@@ -22,16 +24,18 @@ class MoviesListPresenter {
  
     // MARK: - Class Methods
     func onViewDidLoad() {
-        reloadData()
+        loadUpcomingMovies()
     }
     
     func onPullToRefresh() {
-        reloadData()
+        resetData()
+        loadUpcomingMovies()
     }
     
     func onSearchBarEntry(text: String) {
         guard text.count > 0 else {
-            reloadData()
+            resetData()
+            loadUpcomingMovies()
             return
         }
         
@@ -46,8 +50,8 @@ class MoviesListPresenter {
     }
     
     func onSearchCancel() {
-        view?.updateView(with: [])
-        reloadData()
+        resetData()
+        loadUpcomingMovies()
     }
     
     func getCellModel(at index: Int) -> MovieCellViewModel {
@@ -68,17 +72,34 @@ class MoviesListPresenter {
             .disposed(by: bag)
     }
     
-    private func reloadData() {
+    func paginate() {
+        loadUpcomingMovies()
+    }
+    
+    private func loadUpcomingMovies() {
+        guard !isLoading else { return }
+        
+        isLoading = true
         view?.setLoadingAppearance(to: true)
-        dataSource?.getLatestMovies(page: 1)
+        dataSource?.getUpcomingMovies(page: currentPage)
             .subscribe(onNext: { [weak self] movies in
-                self?.movies = movies
+                self?.isLoading = false
+                self?.movies.append(contentsOf: movies)
                 self?.view?.setLoadingAppearance(to: true)
-                self?.view?.updateView(with: movies)
+                self?.view?.updateView(with: movies)//self?.movies ?? [])
+                self?.currentPage += 1
             }, onError: { [weak self] error in
+                self?.isLoading = false
                 self?.view?.setLoadingAppearance(to: true)
                 self?.view?.showError(message: error.localizedDescription)
             })
             .disposed(by: bag)
+    }
+    
+    // MARK: - Util
+    private func resetData() {
+        view?.updateView(with: [])
+        movies = []
+        currentPage = 1
     }
 }

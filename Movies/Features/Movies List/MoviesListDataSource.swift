@@ -10,7 +10,7 @@ import RxSwift
 import UIKit
 
 protocol MoviesListDataSource {
-    func getLatestMovies(page: Int) -> Observable<[Movie]>
+    func getUpcomingMovies(page: Int) -> Observable<[Movie]>
     func searchMovie(title: String, page: Int) -> Observable<[Movie]>
     func getImage(path: String) -> Observable<UIImage>
 }
